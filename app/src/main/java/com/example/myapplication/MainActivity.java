@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -62,19 +63,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         }
         else {
-            textView.setText(user.getEmail());
+            Log.d("FUCK", "onCreate: "+ user.getEmail());
         }
-
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), Login.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 
     @Override
