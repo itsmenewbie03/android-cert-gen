@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "208255113918",
+    "project_id": "collab-dbee6",
+    "storage_bucket": "collab-dbee6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208255113918:android:7d1460ca24568de65c5cef",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy9nO44chYz2oqdYPmUxmPRqRXiFL9XGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,20 @@
+<resources>
+<!--    <string name="app_name">Certificate Generator</string>-->
+    <string name="login">Login</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="register">Register</string>
+    <string name="click_to_login">Click to login</string>
+    <string name="not_member">Not a member yet?</string>
+    <string name="click_to_register"> Not a member yet? Sign up</string>
+    <string name="logout">LOGOUT</string>
+    <string name="Barangay"> BARANGAY BANGCUD</string>
+    <string name="lower"> CERTIFICATE GENERATOR</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open_nav">open nav</string>
+    <string name="close_nav">close nav</string>
+
+        <string name="app_name">My Application</string>
+
+</resources>
