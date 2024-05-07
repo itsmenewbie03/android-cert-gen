@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true"
     android:background="@mipmap/dashvoar"
-    tools:context=".ResidentDatabase"
-    >
+    android:fillViewport="true"
+    tools:context=".ResidentDatabase">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,15 +24,15 @@
                 android:id="@+id/searchField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/search_background"
+                android:backgroundTint="@color/gray"
                 android:drawableStart="@drawable/person_search"
                 android:drawablePadding="10dp"
-                android:hint="Search"
-                android:backgroundTint="@color/gray"
-                android:background="@drawable/search_background"
-                android:layout_margin="10sp"
-                android:elevation="4dp"/>
+                android:elevation="4dp"
+                android:hint="Search" />
 
         </LinearLayout>
 
@@ -63,146 +61,149 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="10dp"
-            android:layout_margin="10sp"
-            app:cardElevation="10dp">
-
-            <TableLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@color/white">
+                android:layout_margin="10sp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
 
-                <TableRow
-                    android:id="@+id/headerRow"
-                    android:layout_marginBottom="15dp"
-                    android:background="@color/white">
+                <com.evrencoskun.tableview.TableView
+                    android:id="@+id/resident_table_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <!--            <TableLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_margin="10dp"-->
+                <!--                android:background="@color/white">-->
 
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="ID"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="@string/name"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                <!--                <TableRow-->
+                <!--                    android:id="@+id/headerRow"-->
+                <!--                    android:layout_marginBottom="15dp"-->
+                <!--                    android:background="@color/white">-->
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="@string/age"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="@string/address"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:padding="10dp"-->
+                <!--                        android:text="ID"-->
+                <!--                        android:textColor="@color/black"-->
+                <!--                        android:textSize="14sp"-->
+                <!--                        android:textStyle="bold" />-->
 
-                </TableRow>
-
-
-                <TableRow
-                    android:id="@+id/row1"
-                    android:layout_marginBottom="10dp">
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:padding="10dp"-->
+                <!--                        android:text="@string/name"-->
+                <!--                        android:textColor="@color/black"-->
+                <!--                        android:textSize="14sp"-->
+                <!--                        android:textStyle="bold" />-->
 
 
-                    <TextView
-                        android:id="@+id/idTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="1005"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:padding="10dp"-->
+                <!--                        android:text="@string/gender"-->
+                <!--                        android:textColor="@color/black"-->
+                <!--                        android:textSize="14sp"-->
+                <!--                        android:textStyle="bold" />-->
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:padding="10dp"-->
+                <!--                        android:text="@string/address"-->
+                <!--                        android:textColor="@color/black"-->
+                <!--                        android:textSize="14sp"-->
+                <!--                        android:textStyle="bold" />-->
+
+                <!--                </TableRow>-->
 
 
-                    <TextView
-                        android:id="@+id/nameTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Brendyl Shayne Singayao"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
+                <!--                <TableRow-->
+                <!--                    android:id="@+id/row1"-->
+                <!--                    android:layout_marginBottom="10dp">-->
 
 
-                    <TextView
-                        android:id="@+id/ageTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="6"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/addressTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="zone3"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <FrameLayout
-                        android:id="@+id/buttonLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone">
-
-                        <!-- Delete and Edit Buttons -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="start"
-                            android:padding="10dp"
-                            android:background="@android:color/white">
-
-                            <Button
-                                android:id="@+id/deleteButton1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Delete" />
-
-                            <Button
-                                android:id="@+id/editButton1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Edit"
-                                android:visibility="invisible" />
-
-                        </LinearLayout>
-
-                    </FrameLayout>
-
-                </TableRow>
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/idTextView"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:padding="10dp"-->
+                <!--                        android:text="1005"-->
+                <!--                        android:textColor="@color/black"-->
+                <!--                        android:textSize="14sp" />-->
 
 
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/nameTextView"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:padding="10dp"-->
+                <!--                        android:text="Brendyl Shayne Singayao"-->
+                <!--                        android:textColor="@color/black"-->
+                <!--                        android:textSize="14sp" />-->
 
-            </TableLayout>
-        </androidx.cardview.widget.CardView>
+
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/ageTextView"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:padding="10dp"-->
+                <!--                        android:text="female"-->
+                <!--                        android:textColor="@color/black"-->
+                <!--                        android:textSize="14sp" />-->
+
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/addressTextView"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:padding="10dp"-->
+                <!--                        android:text="zone3"-->
+                <!--                        android:textColor="@color/black"-->
+                <!--                        android:textSize="14sp" />-->
+
+                <!--                    <FrameLayout-->
+                <!--                        android:id="@+id/buttonLayout"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:visibility="gone">-->
+
+                <!--                        &lt;!&ndash; Delete and Edit Buttons &ndash;&gt;-->
+                <!--                        <LinearLayout-->
+                <!--                            android:layout_width="match_parent"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:background="@android:color/white"-->
+                <!--                            android:gravity="start"-->
+                <!--                            android:orientation="horizontal"-->
+                <!--                            android:padding="10dp">-->
+
+                <!--                            <Button-->
+                <!--                                android:id="@+id/deleteButton1"-->
+                <!--                                android:layout_width="wrap_content"-->
+                <!--                                android:layout_height="wrap_content"-->
+                <!--                                android:text="Delete" />-->
+
+                <!--                            <Button-->
+                <!--                                android:id="@+id/editButton1"-->
+                <!--                                android:layout_width="wrap_content"-->
+                <!--                                android:layout_height="wrap_content"-->
+                <!--                                android:text="Edit"-->
+                <!--                                android:visibility="invisible" />-->
+
+                <!--                        </LinearLayout>-->
+
+                <!--                    </FrameLayout>-->
+
+                <!--                </TableRow>-->
+
+
+                <!--            </TableLayout>-->
+            </androidx.cardview.widget.CardView>
 
         </androidx.core.widget.NestedScrollView>
 
