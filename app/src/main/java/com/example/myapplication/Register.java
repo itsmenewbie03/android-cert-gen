@@ -42,6 +42,8 @@ public class Register extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Toast.makeText(this, "REGISTRATION FEATURE IS DISABLED", Toast.LENGTH_SHORT).show();
+        finish();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mAuth = FirebaseAuth.getInstance();
