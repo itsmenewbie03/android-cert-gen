@@ -78,8 +78,6 @@ public class MyTableViewAdapter extends AbstractTableAdapter<ColumnHeader, RowHe
         // Then you should consider the below lines. Otherwise, you can ignore them.
 
         // It is necessary to remeasure itself.
-        viewHolder.cell_container.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        viewHolder.cell_textview.requestLayout();
     }
 
 
@@ -146,10 +144,6 @@ public class MyTableViewAdapter extends AbstractTableAdapter<ColumnHeader, RowHe
         // If your TableView should have auto resize for cells & columns.
         // Then you should consider the below lines. Otherwise, you can ignore them.
 
-        // It is necessary to remeasure itself.
-        columnHeaderViewHolder.column_header_container.getLayoutParams().width = LinearLayout
-                .LayoutParams.WRAP_CONTENT;
-        columnHeaderViewHolder.cell_textview.requestLayout();
     }
 
     /**
