@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GetTokenResult;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -49,24 +50,11 @@ public class ResidentDatabase extends Fragment {
         // TODO: try to load the resident database list I know this will fail but IDC
         ResidentDatabaseList myRequest = new ResidentDatabaseList();
         RequestQueue requestQueue = Volley.newRequestQueue(this.getContext());
-        ResidentDatabaseList.ResponseCallback callback = new ResidentDatabaseList.ResponseCallback() {
-            @Override
-            public void onSuccess(JSONObject response) {
-                Log.d("API","RESIDENT DB: " + response.toString());
-            }
-        };
 
         // TODO: i love null pointer exception, let's throw a lot of them xD
         Task<GetTokenResult> tokenResultTask = FirebaseAuth.getInstance().getCurrentUser().getIdToken(false);
-        tokenResultTask.addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                String token = task.getResult().getToken();
-                myRequest.makeRequest(requestQueue, token, callback);
-            }
-        });
 
         TableView resident_table = rootView.findViewById(R.id.resident_table_view);
-
         AbstractTableAdapter<ColumnHeader, RowHeader, Cell> adapter = new MyTableViewAdapter();
         // TODO: fuck you I gotta bind the adapter first
         // fuck this shit
@@ -77,15 +65,51 @@ public class ResidentDatabase extends Fragment {
         columnHeaderItems.add(new ColumnHeader("Gender"));
         columnHeaderItems.add(new ColumnHeader("Address"));
         adapter.setColumnHeaderItems(columnHeaderItems);
-        for (int i = 0; i < 10; i++) {
-            RowHeader rowHeader = new RowHeader(String.valueOf(i + 1));
-            List<Cell> cells = new ArrayList<>();
-            cells.add(new Cell(String.valueOf(i + 1)));
-            cells.add(new Cell("John Doe"));
-            cells.add(new Cell("Compiler"));
-            cells.add(new Cell("Ur Mom's House"));
-            adapter.addRow(0, rowHeader, cells);
-        }
+
+        ResidentDatabaseList.ResponseCallback callback = new ResidentDatabaseList.ResponseCallback() {
+            @Override
+            public void onSuccess(JSONObject response) {
+                try {
+
+                    JSONArray resident_list = response.getJSONArray("data");
+                    for (int i = 0; i < resident_list.length(); i++) {
+                       // TODO: parse each resident
+                        JSONObject resident = resident_list.getJSONObject(i);
+                        String firstName = resident.getString("first_name");
+                        String lastName = resident.getString("last_name");
+                        String middleName = resident.has("middle_name") ? resident.getString("middle_name") : "";
+
+                        StringBuilder nameBuilder = new StringBuilder(firstName);
+
+                        if (!middleName.isEmpty()) {
+                            nameBuilder.append(" ").append(middleName);
+                        }
+
+                        nameBuilder.append(" ").append(lastName);
+                        String id = String.valueOf(i+1);
+                        String fullName = nameBuilder.toString();
+                        String gender = resident.getString("gender");
+                        String address = resident.getString("address");
+                        RowHeader rowHeader = new RowHeader(id);
+                        List<Cell> cells = new ArrayList<>();
+                        cells.add(new Cell(id));
+                        cells.add(new Cell(fullName));
+                        cells.add(new Cell(gender));
+                        cells.add(new Cell(address));
+                        adapter.addRow(i, rowHeader, cells);
+                    }
+                } catch (Exception e){
+                    Log.e("API_RESPONSE", "error parsing failed due to: " + e.getMessage());;
+                }
+            }
+        };
+
+        tokenResultTask.addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                String token = task.getResult().getToken();
+                myRequest.makeRequest(requestQueue, token, callback);
+            }
+        });
 //        headerRow = rootView.findViewById(R.id.headerRow);
 //        row1 = rootView.findViewById(R.id.row1);
 //        idTextView = row1.findViewById(R.id.idTextView);
