@@ -69,18 +69,18 @@
         android:id="@+id/ageLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Age" />
+        android:text="@string/gender" />
 
     <EditText
         android:id="@+id/ageEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Age"
         android:layout_marginBottom="20sp"
+        android:background="@drawable/edittext_background_with_border"
+        android:hint="Enter Gender"
         android:maxLines="1"
-        android:textSize="22sp"
         android:padding="6sp"
-        android:background="@drawable/edittext_background_with_border" />
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/addressLabel"

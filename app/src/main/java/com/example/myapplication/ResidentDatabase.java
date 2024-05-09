@@ -142,7 +142,8 @@ public class ResidentDatabase extends Fragment {
             public void onClick(View v) {
                 String firstName = firstNameEditText.getText().toString();
                 String lastName = lastNameEditText.getText().toString();
-                String age = ageEditText.getText().toString();
+                // TODO: i'm too tired to rename the rest of variables xD
+                String gender = ageEditText.getText().toString();
                 String address = addressEditText.getText().toString();
 
                 // Perform validation here if required
@@ -153,8 +154,50 @@ public class ResidentDatabase extends Fragment {
                     return;
                 }
 
+                if (lastName.trim().isEmpty()) {
+                    lastNameEditText.setError("Last name is required");
+                    return;
+                }
+
+                if (gender.trim().isEmpty()) {
+                    ageEditText.setError("Gender is required");
+                    return;
+                }
+
+                if (address.trim().isEmpty()) {
+                    addressEditText.setError("Address is required");
+                    return;
+                }
                 // Add your logic to save the resident or update UI
                 // For now, just display a toast
+                User user = new User();
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setGender(gender);
+                user.setAddress(address);
+
+                ResidentRegisterRequest request = new ResidentRegisterRequest();
+                Task<GetTokenResult> tokenResultTask = FirebaseAuth.getInstance().getCurrentUser().getIdToken(false);
+
+                tokenResultTask.addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        String token = task.getResult().getToken();
+                        request.registerUser(getContext(), user, token,new ResidentRegisterRequest.VolleyListener() {
+                            @Override
+                            public void onSuccess(JSONObject response) {
+                                Toast.makeText(getActivity(), "Resident Added Successfully!", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onError(String message) {
+                                Log.d("API", "Registration failed" + message);
+                                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+                });
+
                 Toast.makeText(getActivity(), "Added Resident: " + firstName + " " + lastName, Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
