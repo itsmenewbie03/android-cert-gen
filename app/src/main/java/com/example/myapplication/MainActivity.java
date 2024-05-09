@@ -19,11 +19,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 //import android.widget.Toolbar;
 import androidx.appcompat.widget.Toolbar;
+
 import android.widget.EditText;
 
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -37,11 +40,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     AlertDialog addResidentDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,23 +71,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         auth = FirebaseAuth.getInstance();
-//        button = findViewById(R.id.logout);
-//        textView = findViewById(R.id.user_details);
         user = auth.getCurrentUser();
 
-        if (user == null){
+        if (user == null) {
             Intent intent = new Intent(getApplicationContext(), Login.class);
             startActivity(intent);
             finish();
+        } else {
+            Log.d("FUCK", "onCreate: " + user.getEmail());
+            Task<GetTokenResult> tokenResultTask = user.getIdToken(false);
+            tokenResultTask.addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    String token = task.getResult().getToken();
+                    Log.d("TOKEN", "TOKEN:" + token);
+                }
+            });
         }
-        else {
-            Log.d("FUCK", "onCreate: "+ user.getEmail());
-        }
-
-        // Set OnClickListener for addResidentButton
-
     }
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -101,7 +104,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (itemId == R.id.nav_report) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ReportFragment()).commit();
         } else if (itemId == R.id.nav_logout) {
-            Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Bye Bye!", Toast.LENGTH_SHORT).show();
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -109,8 +116,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void onBackPressed(){
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer((GravityCompat.START));
         } else {
             super.onBackPressed();

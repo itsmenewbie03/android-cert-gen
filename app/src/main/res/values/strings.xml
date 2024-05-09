@@ -16,8 +16,10 @@
     <string name="close_nav">close nav</string>
     <string name="name">Name</string>
     <string name="age">Age</string>
+    <string name="gender">Gender</string>
     <string name="address">Address</string>
     <string name="search">Search</string>
     <string name="add_resident">Add Resident</string>
+
 
 </resources>
