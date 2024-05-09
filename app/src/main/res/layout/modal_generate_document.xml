@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300sp"
     android:layout_height="570sp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="100sp"
     android:layout_marginLeft="55sp"
-    >
-<LinearLayout
-    android:layout_width="300sp"
-    android:layout_height="500sp"
     android:orientation="vertical"
-    android:layout_margin="45sp"
-    android:layout_marginLeft="10sp"
-    >
+    android:padding="16dp">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add New Resident"
+        android:text="Document"
         android:gravity="center_horizontal"
         android:layout_marginBottom="10sp"
         android:textAlignment="center"
@@ -32,99 +27,112 @@
         android:id="@+id/firstNameLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="First Name"
+        android:text="Select Document"
         android:layout_marginBottom="2sp"/>
 
-    <EditText
-        android:id="@+id/firstNameEditText"
+    <Spinner
+        android:id="@+id/documentTypeSpinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="First name"
-        android:layout_marginBottom="20sp"
-        android:maxLines="1"
+        android:layout_height="38dp"
         android:textSize="22sp"
         android:padding="6sp"
         android:background="@drawable/edittext_background_with_border"
-        />
+        android:layout_marginBottom="16dp"
+        android:hint="Choose Document" />
 
     <TextView
-        android:id="@+id/lastNameLabel"
-        android:layout_marginBottom="2sp"
+        android:id="@+id/firstNameLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Last Name" />
+        android:text="First Name"
+        android:layout_marginBottom="2sp"/>
+    <!-- First Name -->
+    <EditText
+        android:id="@+id/firstNameEditText"
+        android:layout_width="match_parent"
+        android:textSize="22sp"
+        android:padding="6sp"
+        android:background="@drawable/edittext_background_with_border"
+        android:layout_height="wrap_content"
+        android:hint="First Name"
+        android:layout_marginBottom="16dp"/>
 
+    <!-- Last Name -->
+    <TextView
+        android:id="@+id/firstNameLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Last Name"
+        android:layout_marginBottom="2sp"/>
     <EditText
         android:id="@+id/lastNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Last name"
-        android:layout_marginBottom="20sp"
-        android:maxLines="1"
+        android:hint="Last Name"
         android:textSize="22sp"
         android:padding="6sp"
-        android:background="@drawable/edittext_background_with_border"/>
+        android:background="@drawable/edittext_background_with_border"
+        android:layout_marginBottom="16dp"/>
 
+    <!-- Age -->
     <TextView
-        android:id="@+id/ageLabel"
+        android:id="@+id/firstNameLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Age" />
-
+        android:text="Age"
+        android:layout_marginBottom="2sp"/>
     <EditText
         android:id="@+id/ageEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Age"
-        android:layout_marginBottom="20sp"
-        android:maxLines="1"
+        android:hint="Age"
         android:textSize="22sp"
         android:padding="6sp"
-        android:background="@drawable/edittext_background_with_border" />
+        android:background="@drawable/edittext_background_with_border"
+        android:layout_marginBottom="16dp"/>
 
+    <!-- Address -->
     <TextView
-        android:id="@+id/addressLabel"
+        android:id="@+id/firstNameLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Address" />
-
+        android:text="Address"
+        android:layout_marginBottom="2sp"/>
     <EditText
         android:id="@+id/addressEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Address"
-        android:layout_marginBottom="20sp"
-        android:maxLines="1"
         android:textSize="22sp"
         android:padding="6sp"
-        android:background="@drawable/edittext_background_with_border" />
+        android:background="@drawable/edittext_background_with_border"
+        android:hint="Address"/>
 
+    <!-- Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:gravity="center_horizontal">
+        android:layout_marginTop="16dp">
 
         <Button
             android:id="@+id/cancelButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Cancel"
-            android:textColor="#FFFFFF"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="#FF0000" />
-
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#FF0000"
+            android:textColor="@android:color/white"/>
         <Button
             android:id="@+id/saveButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Save"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#008000" />
+            android:backgroundTint="#008000"
+            android:textColor="@android:color/white"
+            />
 
 
     </LinearLayout>
-
 </LinearLayout>
-</RelativeLayout>

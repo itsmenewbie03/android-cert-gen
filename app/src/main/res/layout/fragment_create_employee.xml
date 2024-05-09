@@ -51,6 +51,7 @@
                 android:layout_marginRight="10dp"
                 android:padding="8dp"
                 android:text="Create Employee"
+                android:backgroundTint="#008000"
                 android:textColor="@color/white" />
 
         </LinearLayout>

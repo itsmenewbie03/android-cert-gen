@@ -95,15 +95,61 @@ public class ResidentDatabase extends Fragment {
         });
 
         // Set OnClickListener for the Add Resident button
+        // Set OnClickListener for the Add Resident button
         addResidentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to AddResidentActivity
-                Intent intent = new Intent(getActivity(), AddResidentActivity.class);
-                startActivity(intent);
+                // Show add resident dialog
+                showAddResidentDialog();
             }
         });
 
         return rootView;
+    }
+
+    private void showAddResidentDialog() {
+        final androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.activity_add_resident, null); // Updated here
+        final EditText firstNameEditText = view.findViewById(R.id.firstNameEditText);
+        final EditText lastNameEditText = view.findViewById(R.id.lastNameEditText);
+        final EditText ageEditText = view.findViewById(R.id.ageEditText);
+        final EditText addressEditText = view.findViewById(R.id.addressEditText);
+        Button saveButton = view.findViewById(R.id.saveButton);
+        Button cancelButton = view.findViewById(R.id.cancelButton);
+
+        builder.setView(view);
+        final androidx.appcompat.app.AlertDialog dialog = builder.create();
+        dialog.show();
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String firstName = firstNameEditText.getText().toString();
+                String lastName = lastNameEditText.getText().toString();
+                String age = ageEditText.getText().toString();
+                String address = addressEditText.getText().toString();
+
+                // Perform validation here if required
+
+                // Example: Check if first name is not empty
+                if (firstName.trim().isEmpty()) {
+                    firstNameEditText.setError("First name is required");
+                    return;
+                }
+
+                // Add your logic to save the resident or update UI
+                // For now, just display a toast
+                Toast.makeText(getActivity(), "Added Resident: " + firstName + " " + lastName, Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 }
