@@ -1,103 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300sp"
     android:layout_height="570sp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="100sp"
     android:layout_marginLeft="55sp"
-    >
-<LinearLayout
-    android:layout_width="300sp"
-    android:layout_height="500sp"
     android:orientation="vertical"
-    android:layout_margin="45sp"
-    android:layout_marginLeft="10sp"
-    >
+    android:padding="16dp">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add New Resident"
-        android:gravity="center_horizontal"
-        android:layout_marginBottom="10sp"
-        android:textAlignment="center"
-        android:textSize="25sp"
+        android:text="Add New Employee"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#000000"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginBottom="40sp"
-        android:background="@android:color/darker_gray"/>
+        android:textAlignment="center"
+        android:layout_marginBottom="16dp"/>
+
     <TextView
-        android:id="@+id/firstNameLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="First Name"
-        android:layout_marginBottom="2sp"/>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Firstname" />
 
     <EditText
         android:id="@+id/firstNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="First name"
+        android:hint="Firstname"
         android:layout_marginBottom="20sp"
         android:maxLines="1"
         android:textSize="22sp"
         android:padding="6sp"
         android:background="@drawable/edittext_background_with_border"
-        />
+        app:cardCornerRadius="10dp"/>
 
     <TextView
-        android:id="@+id/lastNameLabel"
-        android:layout_marginBottom="2sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Last Name" />
+        android:text="Lastname" />
 
     <EditText
         android:id="@+id/lastNameEditText"
+        android:hint="Lastname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Last name"
         android:layout_marginBottom="20sp"
         android:maxLines="1"
         android:textSize="22sp"
         android:padding="6sp"
-        android:background="@drawable/edittext_background_with_border"/>
+        android:background="@drawable/edittext_background_with_border"
+        app:cardCornerRadius="10dp"/>
 
     <TextView
-        android:id="@+id/ageLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Age" />
 
     <EditText
         android:id="@+id/ageEditText"
+        android:hint="Age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Age"
         android:layout_marginBottom="20sp"
         android:maxLines="1"
         android:textSize="22sp"
         android:padding="6sp"
-        android:background="@drawable/edittext_background_with_border" />
+        android:background="@drawable/edittext_background_with_border"
+/>
 
     <TextView
-        android:id="@+id/addressLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Address" />
-
+    android:id="@+id/addressLabel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Address" />
     <EditText
         android:id="@+id/addressEditText"
+        android:hint="Address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Address"
         android:layout_marginBottom="20sp"
         android:maxLines="1"
         android:textSize="22sp"
         android:padding="6sp"
-        android:background="@drawable/edittext_background_with_border" />
+        android:background="@drawable/edittext_background_with_border"
+        app:cardCornerRadius="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Roles" />
+
+    <EditText
+        android:id="@+id/roleEditText"
+        android:hint="Role"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20sp"
+        android:maxLines="1"
+        android:textSize="22sp"
+        android:padding="6sp"
+        android:background="@drawable/edittext_background_with_border"
+        android:drawablePadding="8dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -127,4 +131,3 @@
     </LinearLayout>
 
 </LinearLayout>
-</RelativeLayout>

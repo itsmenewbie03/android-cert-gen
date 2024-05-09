@@ -46,13 +46,14 @@
             android:orientation="horizontal">
 
             <Button
-
+                android:backgroundTint="#008000"
+                android:id="@+id/chooseDocumentButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:padding="8dp"
-                android:text="Choose Document   V"
+                android:text="Choose Document"
                 android:textColor="@color/white" />
 
         </LinearLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,31 +13,473 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Report"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp" />
+
 
     <!-- Description -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="This is the report section. You can generate a report by clicking the button below."
-        android:textSize="18sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="24dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
 
-    <!-- Button to generate report -->
-    <Button
-        android:id="@+id/generate_report_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Generate Download Report"
-        android:textSize="18sp"
-        android:layout_gravity="center_horizontal" />
-    </LinearLayout>
-</RelativeLayout>
+            android:padding="16dp">
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Report 2024"
+                android:textSize="24sp"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Table Layout -->
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@color/white"
+                android:layout_marginLeft="20sp">
+
+                <!-- Column Titles -->
+                <TableRow
+                    android:gravity="center"
+                    android:padding="6sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" Month "
+                        android:padding="8dp"
+                        android:background="#CCCCCC"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Certificate 1"
+                        android:padding="8dp"
+                        android:background="#CCCCCC"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Certificate 2"
+                        android:padding="8dp"
+                        android:background="#CCCCCC"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Certificate 1  "
+                        android:padding="8dp"
+                        android:background="#CCCCCC"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+                <!-- Rows -->
+                <TableRow
+                    android:gravity="center"
+                    android:padding="6sp"
+                   >
+                    <!-- Row 1 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="January"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="24"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="14"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+
+                <TableRow
+                    android:gravity="center"
+                    android:padding="6sp">
+                    <!-- Row 2 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="February"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="22"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="23"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="24"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+                <!-- Rows 3 to 6 can be similarly added -->
+                <TableRow
+                    android:gravity="center"
+                    android:padding="6sp">
+                    <!-- March -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="March"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="30"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="25"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="18"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+                <!-- April -->
+                <TableRow
+                    android:gravity="center"
+                    android:padding="6sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="April"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="28"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="22"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+                <!-- May -->
+                <TableRow
+                    android:gravity="center"
+                    android:padding="6sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="May"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="18"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="34"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="15"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+                <!-- June -->
+                <TableRow
+                    android:gravity="center"
+                    android:padding="6sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="June"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="25"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="30"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+                <!-- July -->
+                <TableRow
+                    android:gravity="center"
+                    android:padding="6sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="July"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="22"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="26"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="28"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+                <!-- August -->
+                <TableRow
+                    android:gravity="center"
+                    android:padding="6sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="August"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="16"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="24"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="32"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+                <!-- September to December rows can be added similarly -->
+                <TableRow
+                    android:gravity="center"
+                    android:padding="6sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="September"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="22"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="26"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="28"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+                <!-- August -->
+                <TableRow
+                    android:gravity="center"
+                    android:padding="6sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="October"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="16"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="24"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="32"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                </TableRow>
+                <TableRow
+                    android:gravity="center"
+                    android:padding="6sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="November"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="22"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="26"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="28"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                </TableRow>
+
+                <!-- August -->
+                <TableRow
+                    android:gravity="center"
+                    android:padding="6sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="December"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="16"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="24"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="32"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                </TableRow>
+                <!-- Total Row -->
+                <TableRow
+                    android:gravity="center"
+                    android:padding="6sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="155"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="165"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="190"
+                        android:padding="8dp"
+                        android:textAlignment="center"/>
+                </TableRow>
+            </TableLayout>
+
+            <!-- Generate Report Button -->
+            <Button
+                android:layout_width="300sp"
+                android:layout_height="wrap_content"
+                android:text="Generate Report"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginLeft="50sp"
+                android:layout_marginRight="50sp"
+                android:backgroundTint="#008000"
+                android:textColor="#FFFFFF"/>
+
+        </LinearLayout>
+
+</LinearLayout>
+</LinearLayout>
