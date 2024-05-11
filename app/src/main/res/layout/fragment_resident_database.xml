@@ -53,6 +53,17 @@
                 android:text="@string/add_resident"
                 android:textColor="@color/white" />
 
+            <Button
+                android:id="@+id/deleteResidentButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="8dp"
+                android:backgroundTint="#008000"
+                android:text="@string/delete_resident"
+                android:textColor="@color/white" />
+
         </LinearLayout>
 
         <!-- Table Layout -->

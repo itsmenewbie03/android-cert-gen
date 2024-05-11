@@ -20,6 +20,7 @@
     <string name="address">Address</string>
     <string name="search">Search</string>
     <string name="add_resident">Add Resident</string>
+    <string name="delete_resident">Delete Resident</string>
 
 
 </resources>

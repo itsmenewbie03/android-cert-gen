@@ -9,8 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +45,11 @@ public class ResidentDatabase extends Fragment {
     private Button editButton;
     private Button addResidentButton;
 
+    private JSONArray residentList;
+
+    // TODO: I'm so annoyed getting token in each request, let's just store it in a variable
+    private String access_token;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,8 +80,9 @@ public class ResidentDatabase extends Fragment {
                 try {
 
                     JSONArray resident_list = response.getJSONArray("data");
+                    setResidentList(resident_list);
                     for (int i = 0; i < resident_list.length(); i++) {
-                       // TODO: parse each resident
+                        // TODO: parse each resident
                         JSONObject resident = resident_list.getJSONObject(i);
                         String firstName = resident.getString("first_name");
                         String lastName = resident.getString("last_name");
@@ -86,7 +95,7 @@ public class ResidentDatabase extends Fragment {
                         }
 
                         nameBuilder.append(" ").append(lastName);
-                        String id = String.valueOf(i+1);
+                        String id = String.valueOf(i + 1);
                         String fullName = nameBuilder.toString();
                         String gender = resident.getString("gender");
                         String address = resident.getString("address");
@@ -98,15 +107,17 @@ public class ResidentDatabase extends Fragment {
                         cells.add(new Cell(address));
                         adapter.addRow(i, rowHeader, cells);
                     }
-                } catch (Exception e){
-                    Log.e("API_RESPONSE", "error parsing failed due to: " + e.getMessage());;
+                } catch (Exception e) {
+                    Log.e("API_RESPONSE", "error parsing failed due to: " + e.getMessage());
+                    ;
                 }
             }
         };
-      
+
         tokenResultTask.addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 String token = task.getResult().getToken();
+                setAccessToken(token);
                 myRequest.makeRequest(requestQueue, token, callback);
             }
         });
@@ -119,7 +130,102 @@ public class ResidentDatabase extends Fragment {
                 showAddResidentDialog();
             }
         });
+
+
+        Button deleteResidentButton = rootView.findViewById(R.id.deleteResidentButton);
+        deleteResidentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Show save resident dialog
+                showDeleteResidentDialog();
+            }
+        });
         return rootView;
+    }
+
+    private void showDeleteResidentDialog() {
+        final androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.modal_delete_resident, null); // Updated here
+        Button deleteButton = view.findViewById(R.id.deleteButton);
+        Button cancelButton = view.findViewById(R.id.cancelButton);
+        List<CustomSpinnerItem> residents = new ArrayList<>();
+        final String[] target = {""};
+
+        for (int i = 0; i < residentList.length(); i++) {
+            try {
+                JSONObject resident = residentList.getJSONObject(i);
+                String firstName = resident.getString("first_name");
+                String lastName = resident.getString("last_name");
+                String middleName = resident.has("middle_name") ? resident.getString("middle_name") : "";
+
+                StringBuilder nameBuilder = new StringBuilder(firstName);
+
+                if (!middleName.isEmpty()) {
+                    nameBuilder.append(" ").append(middleName);
+                }
+                nameBuilder.append(" ").append(lastName);
+                String fullName = nameBuilder.toString();
+                String id = resident.getString("_id");
+                residents.add(new CustomSpinnerItem(id, fullName));
+            } catch (Exception e) {
+                Log.e("RESIDENT LIST", "error parsing failed due to: " + e.getMessage());
+                ;
+            }
+        }
+        ArrayAdapter<CustomSpinnerItem> userAdapter = new ArrayAdapter<>(getContext(), R.layout.spinner, residents);
+        Spinner residentSpinner = view.findViewById(R.id.resident_spinner);
+        residentSpinner.setAdapter(userAdapter);
+        residentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                CustomSpinnerItem resident = (CustomSpinnerItem) parent.getSelectedItem();
+                Toast.makeText(getContext(), "Selected " + resident.getName(), Toast.LENGTH_SHORT).show();
+                // another stupid workaround xD
+                target[0] = resident.getId();
+                // LOG the selected resident
+                Log.d("SELECTED_RESIDENT", "Selected Resident: " + resident.getId() + " " + target[0]);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        builder.setView(view);
+        final androidx.appcompat.app.AlertDialog dialog = builder.create();
+        dialog.show();
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (target[0].isEmpty()) {
+                    Toast.makeText(getActivity(), "Please select a resident to delete", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                ResidentDeleteRequest request = new ResidentDeleteRequest();
+                ResidentDeleteRequest.VolleyListener callback = new ResidentDeleteRequest.VolleyListener() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        Toast.makeText(getActivity(), "Resident Deleted Successfully!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        Log.d("API", "Deletion failed" + message);
+                        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+                    }
+                };
+                request.deleteUser(getActivity(),target[0],access_token, callback);
+                dialog.dismiss();
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 
     private void showAddResidentDialog() {
@@ -182,7 +288,7 @@ public class ResidentDatabase extends Fragment {
                 tokenResultTask.addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         String token = task.getResult().getToken();
-                        request.registerUser(getContext(), user, token,new ResidentRegisterRequest.VolleyListener() {
+                        request.registerUser(getContext(), user, token, new ResidentRegisterRequest.VolleyListener() {
                             @Override
                             public void onSuccess(JSONObject response) {
                                 Toast.makeText(getActivity(), "Resident Added Successfully!", Toast.LENGTH_SHORT).show();
@@ -209,5 +315,13 @@ public class ResidentDatabase extends Fragment {
                 dialog.dismiss();
             }
         });
+    }
+
+    private void setResidentList(JSONArray residentList) {
+        this.residentList = residentList;
+    }
+
+    private void setAccessToken(String access_token) {
+        this.access_token = access_token;
     }
 }

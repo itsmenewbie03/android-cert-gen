@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300sp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="100sp"
+    android:layout_marginLeft="55sp"
+    >
+    <LinearLayout
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="45sp"
+        android:layout_marginLeft="10sp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete Resident"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="10sp"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="40sp"
+            android:background="@android:color/darker_gray"/>
+        <TextView
+            android:id="@+id/firstNameLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select a Resident to Delete"
+            android:layout_marginBottom="2sp"/>
+
+        <Spinner
+            android:id="@+id/resident_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20sp"
+            android:maxLines="1"
+            android:textSize="22sp"
+            android:padding="6sp"
+            android:background="@drawable/edittext_background_with_border"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:textColor="#FFFFFF"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="#008000" />
+
+            <Button
+                android:id="@+id/deleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FF0000" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
