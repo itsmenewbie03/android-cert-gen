@@ -26,7 +26,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginBottom="40sp"
+            android:layout_marginBottom="20sp"
             android:background="@android:color/darker_gray"/>
         <TextView
             android:id="@+id/firstNameLabel"

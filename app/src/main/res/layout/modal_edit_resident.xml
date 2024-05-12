@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300sp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="55sp"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Resident"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="10sp"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="20sp"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select a Resident" />
+
+    <Spinner
+        android:id="@+id/resident_edit_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20sp"
+        android:maxLines="1"
+        android:textSize="22sp"
+        android:padding="6sp"
+        android:background="@drawable/edittext_background_with_border"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Firstname" />
+
+    <EditText
+        android:id="@+id/firstNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Firstname"
+        android:layout_marginBottom="20sp"
+        android:maxLines="1"
+        android:textSize="22sp"
+        android:padding="6sp"
+        android:background="@drawable/edittext_background_with_border"
+        app:cardCornerRadius="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lastname" />
+
+    <EditText
+        android:id="@+id/lastNameEditText"
+        android:hint="Lastname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20sp"
+        android:maxLines="1"
+        android:textSize="22sp"
+        android:padding="6sp"
+        android:background="@drawable/edittext_background_with_border"
+        app:cardCornerRadius="10dp"/>
+
+    <TextView
+        android:id="@+id/addressLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gender" />
+    <EditText
+        android:id="@+id/genderEditText"
+        android:hint="Gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20sp"
+        android:maxLines="1"
+        android:textSize="22sp"
+        android:padding="6sp"
+        android:background="@drawable/edittext_background_with_border"
+        app:cardCornerRadius="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Address" />
+
+    <EditText
+        android:id="@+id/addressEditText"
+        android:hint="Address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20sp"
+        android:maxLines="1"
+        android:textSize="22sp"
+        android:padding="6sp"
+        android:background="@drawable/edittext_background_with_border"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textColor="#FFFFFF"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#FF0000" />
+
+        <Button
+            android:id="@+id/updateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#008000" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
