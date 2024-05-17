@@ -103,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ResidentDatabase()).commit();
         } else if (itemId == R.id.nav_report) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ReportFragment()).commit();
+        } else if (itemId == R.id.nav_profile) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_profile()).commit();
         } else if (itemId == R.id.nav_logout) {
             Toast.makeText(this, "Bye Bye!", Toast.LENGTH_SHORT).show();
             FirebaseAuth.getInstance().signOut();

@@ -5,7 +5,7 @@
     <color name="green">#E9209A53</color>
     <color name="gray">#A6DDDDDD</color>
     <color name="dark_gray">#808080</color>
-    <color name="background_gray">#86EAEAEA</color>
+    <color name="background_gray">#86BDBDBD</color>
     <color name="cell_background_color">#ffffff</color>
     <color name="header_line_color">#0a0a0a</color>
     <color name="table_view_default_text_color">#0a0a0a</color>

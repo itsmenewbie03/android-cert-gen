@@ -22,6 +22,10 @@
     <string name="add_resident">Add Resident</string>
     <string name="delete_resident">Delete Resident</string>
     <string name="edit_resident">Edit Resident</string>
-
+    <string-array name="options_array">
+        <item>Upload Profile</item>
+        <item>Camera</item>
+        <item>Photo/Gallery</item>
+    </string-array>
 
 </resources>
