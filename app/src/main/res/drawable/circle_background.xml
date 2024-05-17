@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Circular shape background -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/green" />
+        </shape>
+    </item>
+    <!-- Icon in the center -->
+    <item android:drawable="@drawable/nav_profile"
+        android:gravity="center" />
+</layer-list>

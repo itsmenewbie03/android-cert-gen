@@ -41,6 +41,11 @@ xmlns:tools="http://schemas.android.com/tools"
     <item android:title="">
         <menu>
             <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/nav_profile"
+                android:title="Profile"
+                />
+            <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/nav_logout"
                 android:title="Logout"
