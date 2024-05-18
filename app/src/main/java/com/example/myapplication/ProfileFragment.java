@@ -5,9 +5,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,27 +24,73 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-public class fragment_profile extends Fragment {
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GetTokenResult;
+
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Objects;
+
+public class ProfileFragment extends Fragment {
 
     private static final int PERMISSION_REQUEST_CODE = 1001;
     private static final int GALLERY_REQUEST_CODE = 1002;
 
     private static final int CAMERA_REQUEST_CODE = 1003;
 
+    private String access_token;
 
-    public fragment_profile() {
+
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        RequestQueue requestQueue = Volley.newRequestQueue(this.requireContext());
+        TextView employeeName = view.findViewById(R.id.employeeName);
+        // TODO: crazy but I ain't changing the ID
+        TextView employeeGender = view.findViewById(R.id.employeeAge);
+        AccountDataRequest accountDataRequest = new AccountDataRequest();
+        AccountDataRequest.ResponseCallback callback = new AccountDataRequest.ResponseCallback() {
+            @Override
+            public void onSuccess(JSONObject response) {
+                try {
+                    Log.d("API", response.toString());
+                    JSONObject data = response.getJSONObject("data");
+                    String name = data.getString("first_name") + " " + data.getString("last_name");
+                    String gender = data.getString("gender");
+                    String avatar_url = data.getString("avatar_url");
+                    String capitalizedGender = gender.substring(0, 1).toUpperCase() + gender.substring(1);
+                    Glide.with(getContext())
+                            .load(avatar_url)
+                            .into((ImageView) view.findViewById(R.id.imageView));
+                    employeeName.setText(String.format("Name: %s", name));
+                    employeeGender.setText(String.format("Gender: %s", capitalizedGender));
+                } catch (Exception e) {
+                    Log.e("API", "Error: " + e.getMessage());
+                }
+            }
+        };
+        Task<GetTokenResult> tokenResultTask = FirebaseAuth.getInstance().getCurrentUser().getIdToken(false);
+        tokenResultTask.addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                String token = task.getResult().getToken();
+                setAccessToken(token);
+                accountDataRequest.makeRequest(requestQueue, token, callback);
+            }
+        });
         // Initialize the Spinner
         Spinner spinnerOptions = view.findViewById(R.id.spinnerOptions);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
@@ -53,8 +103,8 @@ public class fragment_profile extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 if (position == 0) {
-                    // Default selection: "Upload Profile"
-                    // You can choose to do nothing or perform any specific action here
+                    // TODO: add return to remove warning xD
+                    return;
                 } else if (position == 1) {
                     // Option selected: Camera
                     if (checkPermissions()) {
@@ -79,11 +129,30 @@ public class fragment_profile extends Fragment {
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Hide the Upload Button
-                v.setVisibility(View.GONE);
+                ImageView imageView = view.findViewById(R.id.imageView);
+                Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
 
-                // Show a toast message
-                Toast.makeText(getActivity(), "Profile has been changed", Toast.LENGTH_SHORT).show();
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+
+                String encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                AccountAvatarChangeRequest accountAvatarChangeRequest = new AccountAvatarChangeRequest();
+                AccountAvatarChangeRequest.VolleyListener listener = new AccountAvatarChangeRequest.VolleyListener() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        Log.d("API", response.toString());
+                        Toast.makeText(getActivity(), "Profile has been changed", Toast.LENGTH_SHORT).show();
+                        v.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        Log.e("API", message);
+                        Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
+                    }
+                };
+                accountAvatarChangeRequest.changeAvatar(getActivity(), encodedImage, access_token, listener);
             }
         });
 
@@ -138,10 +207,6 @@ public class fragment_profile extends Fragment {
             ImageView imageView = getView().findViewById(R.id.imageView);
             imageView.setImageBitmap(imageBitmap);
             imageView.setVisibility(View.VISIBLE);
-
-            // Hide the TextView
-            TextView textView = getView().findViewById(R.id.textView);
-            textView.setVisibility(View.GONE);
         }
     }
 
@@ -150,10 +215,6 @@ public class fragment_profile extends Fragment {
         ImageView imageView = getView().findViewById(R.id.imageView);
         imageView.setImageURI(selectedImageUri);
         imageView.setVisibility(View.VISIBLE);
-
-        // Hide the TextView
-        TextView textView = getView().findViewById(R.id.textView);
-        textView.setVisibility(View.GONE);
     }
 
     @Override
@@ -171,5 +232,9 @@ public class fragment_profile extends Fragment {
 
             }
         }
+    }
+
+    private void setAccessToken(String access_token) {
+        this.access_token = access_token;
     }
 }

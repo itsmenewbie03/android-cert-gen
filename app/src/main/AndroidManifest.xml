@@ -43,7 +43,7 @@ android:theme="@style/Theme.AppCompat.Light.NoActionBar"
 
         </activity>
         <provider
-            android:authorities="com.example.myapplication.fragment_profile"
+            android:authorities="com.example.myapplication.ProfileFragment"
             android:name="androidx.core.content.FileProvider"
             android:exported="false"
             android:grantUriPermissions="true">

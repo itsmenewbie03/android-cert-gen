@@ -5,24 +5,12 @@
     android:layout_height="match_parent"
     android:background="@mipmap/dashvoar"
 
-    tools:context=".fragment_profile">
+    tools:context=".ProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile"
-        android:textSize="20dp"
-        android:layout_margin="20sp"
-
-        />
-
-
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView"
@@ -49,24 +37,26 @@
 
 
         <!-- Name sa tag iya sa account alang naman akoa jkkkk  -->
+        <!-- Cge ahhh bwahahha -->
         <TextView
             android:id="@+id/employeeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
-            android:text="Name:"
+            android:text="Name: "
             android:textSize="20dp"
 
             />.
 
         <!-- Age sa tag iya sa account -->
+        <!-- WALAY AGE GENDER RA PARA SAYON hahaha -->
 
         <TextView
             android:id="@+id/employeeAge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
-            android:text="Age:"
+            android:text="Gender: "
             android:textSize="20dp"
             />
 
