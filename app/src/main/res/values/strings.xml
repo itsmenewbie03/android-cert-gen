@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Certificate Generator</string>
     <string name="login">Login</string>
-    <string name="email">email</string>
-    <string name="password">password</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
     <string name="register">Register</string>
     <string name="click_to_login">Click to login</string>
     <string name="not_member">Not a member yet?</string>
@@ -22,6 +22,7 @@
     <string name="add_resident">Add Resident</string>
     <string name="delete_resident">Delete Resident</string>
     <string name="edit_resident">Edit Resident</string>
+    <string name="login_with_google">Login with Google</string>
     <string-array name="options_array">
         <item>Upload Profile</item>
         <item>Camera</item>
